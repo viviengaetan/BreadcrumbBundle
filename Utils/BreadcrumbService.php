@@ -24,7 +24,7 @@ class BreadcrumbService
             ->setClassCSS($this->parameters['list_class'])
             ->setSeparator($this->parameters['separator'])
             ->setSeparatorClass($this->parameters['separator_class'])
-            ->setTranslationDomain($this->parameters['translate_domain']);
+            ->setTranslationDomain($this->parameters['translation_domain']);
     }
 
     public function addItem($text, $link, $classCss = null)
@@ -34,6 +34,7 @@ class BreadcrumbService
             $link,
             ($classCss !== null) ? $classCss : $this->parameters["item_class"]
         );
+        return $this;
     }
 
     public function prependItem($text, $link, $classCss = null)
@@ -43,16 +44,13 @@ class BreadcrumbService
             $link,
             ($classCss !== null) ? $classCss : $this->parameters["item_class"]
         );
-    }
-
-    public function setClassCSS($classCSS)
-    {
-        $this->breadcrumb->setClassCSS($classCSS);
+        return $this;
     }
 
     public function clear()
     {
         $this->breadcrumb->clear();
+        return $this;
     }
 
     /**
