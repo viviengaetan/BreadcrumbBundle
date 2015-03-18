@@ -12,10 +12,34 @@ class Breadcrumb implements \Iterator, \ArrayAccess, \Countable
     private $items = array();
 
     /**
-     * Class of element <ul>
+     * Id use in CSS
+     * @var string
+     */
+    private $id;
+
+    /**
+     * Class CSS of element <ul>
      * @var string
      */
     private $classCSS;
+
+    /**
+     * the separator between each item
+     * @var string
+     */
+    private $separator;
+
+    /**
+     * class CSS of separator
+     * @var string
+     */
+    private $separatorClass;
+
+    /**
+     * the translation domain used for breadcrumb
+     * @var string
+     */
+    private $translationDomain;
 
     /**
      * @return mixed
@@ -81,6 +105,80 @@ class Breadcrumb implements \Iterator, \ArrayAccess, \Countable
         array_unshift($this->items, $item);
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param string $id
+     * @return Breadcrumb
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSeparator()
+    {
+        return $this->separator;
+    }
+
+    /**
+     * @param string $separator
+     * @return Breadcrumb
+     */
+    public function setSeparator($separator)
+    {
+        $this->separator = $separator;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSeparatorClass()
+    {
+        return $this->separatorClass;
+    }
+
+    /**
+     * @param string $separatorClass
+     * @return Breadcrumb
+     */
+    public function setSeparatorClass($separatorClass)
+    {
+        $this->separatorClass = $separatorClass;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTranslationDomain()
+    {
+        return $this->translationDomain;
+    }
+
+    /**
+     * @param string $translationDomain
+     * @return Breadcrumb
+     */
+    public function setTranslationDomain($translationDomain)
+    {
+        $this->translationDomain = $translationDomain;
+        return $this;
+    }
+
+
 
     /**
      * @return Breadcrumb

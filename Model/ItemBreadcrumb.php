@@ -22,12 +22,6 @@ class ItemBreadcrumb
      */
     private $classCSS;
 
-    /**
-     * Domain Translation for Item Text
-     * @var string
-     */
-    private $translateDomain;
-
     public function __construct($text, $link, $classCSS = null, $translateDomain = null)
     {
         $this->text = $text;
@@ -87,24 +81,6 @@ class ItemBreadcrumb
     public function setClassCSS($classCSS)
     {
         $this->classCSS = $classCSS;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTranslateDomain()
-    {
-        return $this->translateDomain;
-    }
-
-    /**
-     * @param string $translateDomain
-     * @return ItemBreadcrumb
-     */
-    public function setTranslateDomain($translateDomain)
-    {
-        $this->translateDomain = $translateDomain;
         return $this;
     }
 
