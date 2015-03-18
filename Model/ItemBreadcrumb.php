@@ -22,12 +22,11 @@ class ItemBreadcrumb
      */
     private $classCSS;
 
-    public function __construct($text, $link, $classCSS = null, $translateDomain = null)
+    public function __construct($text, $link, $classCSS = null)
     {
         $this->text = $text;
         $this->link = $link;
         $this->classCSS = $classCSS;
-        $this->translateDomain = $translateDomain;
     }
 
     /**
