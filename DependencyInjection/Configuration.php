@@ -28,7 +28,7 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode("list_class")->defaultValue("breadcrumb")->end()
                 ->scalarNode("item_class")->defaultValue("")->end()
                 ->scalarNode("template")->defaultValue("GGTeamBreadcrumbBundle::breadcrumb.html.twig")->end()
-                ->scalarNode("translate_domain")->defaultNull()->end()
+                ->scalarNode("translation_domain")->defaultNull()->end()
             ->end();
 
         return $treeBuilder;
