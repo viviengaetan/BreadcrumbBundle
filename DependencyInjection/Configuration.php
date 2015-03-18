@@ -20,9 +20,16 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('gg_team_breadcrumb');
 
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
+        $rootNode
+            ->children()
+                ->scalarNode("separator")->defaultValue("/")->end()
+                ->scalarNode("separator_class")->defaultValue("")->end()
+                ->scalarNode("list_id")->defaultValue("ggteam-breadcrumb")->end()
+                ->scalarNode("list_class")->defaultValue("breadcrumb")->end()
+                ->scalarNode("item_class")->defaultValue("")->end()
+                ->scalarNode("template")->defaultValue("GGTeamBreadcrumbBundle::breadcrumb.html.twig")->end()
+                ->scalarNode("translate_domain")->defaultNull()->end()
+            ->end();
 
         return $treeBuilder;
     }
