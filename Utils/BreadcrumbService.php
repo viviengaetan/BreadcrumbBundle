@@ -19,26 +19,29 @@ class BreadcrumbService
         $this->container = $container;
         $this->parameters = $container->getParameter("gg_team_breadcrumb");
         $this->breadcrumb = new Breadcrumb();
-        $this->breadcrumb->setClassCSS($this->parameters['list_class']);
+        $this->breadcrumb
+            ->setId($this->parameters['list_id'])
+            ->setClassCSS($this->parameters['list_class'])
+            ->setSeparator($this->parameters['separator'])
+            ->setSeparatorClass($this->parameters['separator_class'])
+            ->setTranslationDomain($this->parameters['translate_domain']);
     }
 
-    public function addItem($text, $link, $classCss = null, $translateDomain = null)
+    public function addItem($text, $link, $classCss = null)
     {
         $this->breadcrumb->addItem(
             $text,
             $link,
-            ($classCss !== null) ? $classCss : $this->parameters["item_class"],
-            ($translateDomain !== null) ? $translateDomain : $this->parameters["translate_domain"]
+            ($classCss !== null) ? $classCss : $this->parameters["item_class"]
         );
     }
 
-    public function prependItem($text, $link, $classCss = null, $translateDomain = null)
+    public function prependItem($text, $link, $classCss = null)
     {
         $this->breadcrumb->prependItem(
             $text,
             $link,
-            ($classCss !== null) ? $classCss : $this->parameters["item_class"],
-            ($translateDomain !== null) ? $translateDomain : $this->parameters["translate_domain"]
+            ($classCss !== null) ? $classCss : $this->parameters["item_class"]
         );
     }
 
