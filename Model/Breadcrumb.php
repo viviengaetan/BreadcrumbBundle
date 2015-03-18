@@ -1,5 +1,7 @@
 <?php
 
+namespace GGTeam\BreadcrumbBundle\Model;
+
 class Breadcrumb implements \Iterator, \ArrayAccess, \Countable
 {
 
