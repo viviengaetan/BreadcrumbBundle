@@ -1,4 +1,4 @@
 services:
-#    gg_team_breadcrumb.example:
-#        class: GGTeam\BreadcrumbBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+    gg_team_breadcrumb:
+        class: 'GGTeam\BreadcrumbBundle\Utils\BreadcrumbService'
+        arguments: [@service_container]
