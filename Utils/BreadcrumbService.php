@@ -54,6 +54,24 @@ class BreadcrumbService
     }
 
     /**
+     * @return mixed
+     */
+    public function getParameters()
+    {
+        return $this->parameters;
+    }
+
+    /**
+     * @param mixed $parameters
+     * @return BreadcrumbService
+     */
+    public function setParameters($parameters)
+    {
+        $this->parameters = $parameters;
+        return $this;
+    }
+
+    /**
      * @return Breadcrumb
      */
     public function getBreadcrumb()
