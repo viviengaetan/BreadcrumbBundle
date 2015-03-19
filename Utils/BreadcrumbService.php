@@ -71,6 +71,11 @@ class BreadcrumbService
         return $this;
     }
 
+    public function getParameter($key)
+    {
+        return (isset($this->parameters[$key])) ? $this->parameters[$key] : null;
+    }
+
     /**
      * @return Breadcrumb
      */
