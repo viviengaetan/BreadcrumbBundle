@@ -1,0 +1,14 @@
+services:
+    gg_team_breadcrumb:
+        class: 'GGTeam\BreadcrumbBundle\Utils\BreadcrumbService'
+        arguments: [@service_container]
+    gg_team_breadcrumb.twig:
+        class: 'GGTeam\BreadcrumbBundle\Twig\Extension\BreadcrumbExtension'
+        arguments: [@service_container]
+        tags:
+            - { name: "twig.extension" }
+    gg_team_breadcrumb.helper:
+        class: 'GGTeam\BreadcrumbBundle\Templating\Helper\BreadcrumbHelper'
+        arguments: [@templating, @gg_team_breadcrumb]
+        tags:
+            - { name: "templating.helper", alias: "breadcrumb" }
