@@ -1,0 +1,13 @@
+{% spaceless %}
+    {% if breadcrumb.getItems()|length > 0 %}
+        <ul id="{{ breadcrumb.getId() }}" class="{{ breadcrumb.getClassCSS() }}">
+            {% for item in breadcrumb.getItems() %}
+                {% if loop.first == false %}
+                    <li class="{{ breadcrumb.getSeparatorClass() }}">{{ breadcrumb.getSeparator() }}</li>
+                {% endif %}
+                <li class="{{ item.getClassCSS() }}"><a href="{{ item.getLink() }}">{{ item.getText() }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endspaceless %}
+
