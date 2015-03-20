@@ -2,7 +2,6 @@
 
 namespace GGTeam\BreadcrumbBundle\Templating\Helper;
 
-use GGTeam\BreadcrumbBundle\Model\Breadcrumb;
 use GGTeam\BreadcrumbBundle\Utils\BreadcrumbService;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\Templating\Helper\Helper;
@@ -15,7 +14,7 @@ class BreadcrumbHelper extends Helper
 
     /**
      * @param EngineInterface $templating
-     * @param BreadcrumbService $breadcrumbService
+     * @param BreadcrumbService $breadcrumb
      */
     public function __construct(EngineInterface $templating, BreadcrumbService $breadcrumb)
     {
