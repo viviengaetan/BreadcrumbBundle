@@ -82,12 +82,13 @@ class Breadcrumb implements \Iterator, \ArrayAccess, \Countable
      * @param string $text
      * @param string $link
      * @param string $classCss
-     * @param string $translateDomain
+     * @param null $append
+     * @param null $prepend
      * @return Breadcrumb
      */
-    public function addItem($text, $link, $classCss = null, $translateDomain = null)
+    public function addItem($text, $link, $classCss = null, $append = null, $prepend = null)
     {
-        $item = new ItemBreadcrumb($text, $link, $classCss, $translateDomain);
+        $item = new ItemBreadcrumb($text, $link, $classCss, $append, $prepend);
         $this->items[] = $item;
         return $this;
     }
@@ -96,12 +97,13 @@ class Breadcrumb implements \Iterator, \ArrayAccess, \Countable
      * @param string $text
      * @param string $link
      * @param string $classCss
-     * @param string $translateDomain
+     * @param null $append
+     * @param null $prepend
      * @return Breadcrumb
      */
-    public function prependItem($text, $link, $classCss = null, $translateDomain = null)
+    public function prependItem($text, $link, $classCss = null, $append = null, $prepend = null)
     {
-        $item = new ItemBreadcrumb($text, $link, $classCss, $translateDomain);
+        $item = new ItemBreadcrumb($text, $link, $classCss, $append, $prepend);
         array_unshift($this->items, $item);
         return $this;
     }
@@ -177,7 +179,6 @@ class Breadcrumb implements \Iterator, \ArrayAccess, \Countable
         $this->translationDomain = $translationDomain;
         return $this;
     }
-
 
 
     /**
