@@ -7,7 +7,11 @@
                         <span {% if breadcrumb.getSeparatorClass() is not null %}class="{{ breadcrumb.getSeparatorClass() }}{% endif %}">{{ breadcrumb.getSeparator()|raw }}</span>
                     {% endif %}
                     {% if item.getAppend() is not null %}{{ item.getAppend()|raw }}{% endif %}
-                    <a href="{{ item.getLink() }}">{{ item.getText()|raw }}</a>
+                    {% if item.getLink() is not null %}
+                        <a href="{{ item.getLink() }}">{{ item.getText()|raw }}</a>
+                    {% else %}
+                        {{ item.getText()|raw }}
+                    {% endif %}
                     {% if item.getPrepend() is not null %}{{ item.getPrepend()|raw }}{% endif %}
                 </li>
             {% endfor %}
