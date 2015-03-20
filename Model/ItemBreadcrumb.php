@@ -22,11 +22,25 @@ class ItemBreadcrumb
      */
     private $classCSS;
 
-    public function __construct($text, $link, $classCSS = null)
+    /**
+     * html after Text
+     * @var string
+     */
+    private $append;
+
+    /**
+     * html before Text
+     * @var string
+     */
+    private $prepend;
+
+    public function __construct($text, $link, $classCSS = null, $append = null, $prepend = null)
     {
         $this->text = $text;
         $this->link = $link;
         $this->classCSS = $classCSS;
+        $this->append = $append;
+        $this->prepend = $prepend;
     }
 
     /**
@@ -80,6 +94,42 @@ class ItemBreadcrumb
     public function setClassCSS($classCSS)
     {
         $this->classCSS = $classCSS;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAppend()
+    {
+        return $this->append;
+    }
+
+    /**
+     * @param string $append
+     * @return ItemBreadcrumb
+     */
+    public function setAppend($append)
+    {
+        $this->append = $append;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPrepend()
+    {
+        return $this->prepend;
+    }
+
+    /**
+     * @param string $prepend
+     * @return ItemBreadcrumb
+     */
+    public function setPrepend($prepend)
+    {
+        $this->prepend = $prepend;
         return $this;
     }
 

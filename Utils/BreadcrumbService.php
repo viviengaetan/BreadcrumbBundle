@@ -27,22 +27,26 @@ class BreadcrumbService
             ->setTranslationDomain($this->parameters['translation_domain']);
     }
 
-    public function addItem($text, $link, $classCss = null)
+    public function addItem($text, $link, $classCss = null, $append = null, $prepend = null)
     {
         $this->breadcrumb->addItem(
             $text,
             $link,
-            ($classCss !== null) ? $classCss : $this->parameters["item_class"]
+            ($classCss !== null) ? $classCss : $this->parameters["item_class"],
+            $append,
+            $prepend
         );
         return $this;
     }
 
-    public function prependItem($text, $link, $classCss = null)
+    public function prependItem($text, $link, $classCss = null, $append = null, $prepend = null)
     {
         $this->breadcrumb->prependItem(
             $text,
             $link,
-            ($classCss !== null) ? $classCss : $this->parameters["item_class"]
+            ($classCss !== null) ? $classCss : $this->parameters["item_class"],
+            $append,
+            $prepend
         );
         return $this;
     }
