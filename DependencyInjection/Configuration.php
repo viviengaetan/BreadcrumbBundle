@@ -22,13 +22,13 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->scalarNode("separator")->defaultValue("/")->end()
-                ->scalarNode("separator_class")->defaultValue("")->end()
-                ->scalarNode("list_id")->defaultValue("ggteam-breadcrumb")->end()
-                ->scalarNode("list_class")->defaultValue("breadcrumb")->end()
-                ->scalarNode("item_class")->defaultValue("")->end()
-                ->scalarNode("template")->defaultValue("GGTeamBreadcrumbBundle::breadcrumb.html.twig")->end()
-                ->scalarNode("translation_domain")->defaultNull()->end()
+            ->scalarNode("separator")->defaultValue("/")->end()
+            ->scalarNode("separator_class")->defaultValue("")->end()
+            ->scalarNode("list_id")->defaultValue("ggteam-breadcrumb")->end()
+            ->scalarNode("list_class")->defaultValue("breadcrumb")->end()
+            ->scalarNode("item_class")->defaultValue("")->end()
+            ->scalarNode("template")->defaultValue("GGTeamBreadcrumbBundle::breadcrumb.html.twig")->end()
+            ->scalarNode("translation_domain")->defaultNull()->end()
             ->end();
 
         return $treeBuilder;

@@ -2,8 +2,8 @@
 
 namespace GGTeam\BreadcrumbBundle\Utils;
 
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use GGTeam\BreadcrumbBundle\Model\Breadcrumb;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class BreadcrumbService
 {
