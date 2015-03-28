@@ -11,24 +11,28 @@
 !var/logs/.gitkeep
 
 # Parameters
-/app/config/parameters.yml
-/app/config/parameters.ini
+app/config/parameters.yml
+app/config/parameters.ini
 
 # Managed by Composer
-/app/bootstrap.php.cache
-/var/bootstrap.php.cache
-/bin/*
+app/bootstrap.php.cache
+var/bootstrap.php.cache
+bin/*
 !bin/console
 !bin/symfony_requirements
-/vendor/
+vendor
 
 # Assets and user uploads
-/web/bundles/
-/web/uploads/
+web/bundles/
+web/uploads/
 
 # PHPUnit
-/app/phpunit.xml
-/phpunit.xml
+app/phpunit.xml
+phpunit.xml
 
 # Composer PHAR
-/composer.phar
+composer.phar
+composer.lock
+
+# Tools
+.idea

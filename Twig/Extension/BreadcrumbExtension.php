@@ -23,7 +23,11 @@ class BreadcrumbExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'gg_team_render_breadcrumb' => new \Twig_Function_Method($this, "renderBreadcrumb", array("is_safe" => array("html"))),
+            'gg_team_render_breadcrumb' => new \Twig_Function_Method(
+                $this,
+                "renderBreadcrumb",
+                array("is_safe" => array("html"))
+            ),
             'gg_team_breadcrumb' => new \Twig_Function_Method($this, "getBreadcrumb", array("is_safe" => array("html")))
         );
     }
