@@ -6,8 +6,8 @@ class Breadcrumb implements \Iterator, \ArrayAccess, \Countable
 {
 
     /**
-     * list of ItemBreadcrumb
-     * @var array
+     * List of ItemBreadcrumb.
+     * @var array[ItemBreadcrumb]
      */
     private $items = array();
 

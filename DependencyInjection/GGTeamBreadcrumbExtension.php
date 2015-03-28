@@ -27,4 +27,20 @@ class GGTeamBreadcrumbExtension extends Extension
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yml');
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getNamespace()
+    {
+        return 'http://ggteam.com/schema/dic/breadcrumb';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getXsdValidationBasePath()
+    {
+        return __DIR__ . '/../Resources/config/schema';
+    }
 }
