@@ -1,7 +1,22 @@
 <?php
 
+/*
+ * This file is part of the GGTeam package.
+ *
+ * (c) Guillaume Garcia <garciaguillaume69@gmail.com>
+ * (c) Gaëtan Verlhac <viviengaetan69@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace GGTeam\BreadcrumbBundle\Model;
 
+/**
+ * Model class for a breadcrumb.
+ *
+ * @author Guillaume Garcia <garciaguillaume69@gmail.com>
+ */
 class Breadcrumb implements \Iterator, \ArrayAccess, \Countable
 {
 
@@ -12,37 +27,39 @@ class Breadcrumb implements \Iterator, \ArrayAccess, \Countable
     private $items = array();
 
     /**
-     * Id use in CSS
+     * Id used in CSS.
      * @var string
      */
     private $id;
 
     /**
-     * Class CSS of element <ul>
+     * CSS class of <ul> element.
      * @var string
      */
     private $classCSS;
 
     /**
-     * the separator between each item
+     * The separator between each item.
      * @var string
      */
     private $separator;
 
     /**
-     * class CSS of separator
+     * CSS class of the separator.
      * @var string
      */
     private $separatorClass;
 
     /**
-     * the translation domain used for breadcrumb
+     * The translation domain used for the breadcrumb.
      * @var string
      */
     private $translationDomain;
 
+
+
     /**
-     * @return mixed
+     * @return string
      */
     public function getClassCSS()
     {
@@ -50,12 +67,13 @@ class Breadcrumb implements \Iterator, \ArrayAccess, \Countable
     }
 
     /**
-     * @param mixed $classCSS
-     * @return Breadcrumb
+     * @param string $classCSS
+     * @return $this
      */
     public function setClassCSS($classCSS)
     {
         $this->classCSS = $classCSS;
+
         return $this;
     }
 
@@ -69,42 +87,48 @@ class Breadcrumb implements \Iterator, \ArrayAccess, \Countable
 
     /**
      * @param array $items
-     * @return Breadcrumb
+     * @return $this
      */
     public function setItems($items)
     {
         $this->items = $items;
+
         return $this;
     }
 
     /**
-     * Add Item to Breadcrumb
+     * Add an item to the Breadcrumb.
+     *
      * @param string $text
      * @param string $link
      * @param string $classCss
      * @param null $append
      * @param null $prepend
-     * @return Breadcrumb
+     * @return $this
      */
     public function addItem($text, $link, $classCss = null, $append = null, $prepend = null)
     {
         $item = new ItemBreadcrumb($text, $link, $classCss, $append, $prepend);
         $this->items[] = $item;
+
         return $this;
     }
 
     /**
+     * Add an item at the beginning of the breadcrumb.
+     *
      * @param string $text
      * @param string $link
      * @param string $classCss
      * @param null $append
      * @param null $prepend
-     * @return Breadcrumb
+     * @return $this
      */
     public function prependItem($text, $link, $classCss = null, $append = null, $prepend = null)
     {
         $item = new ItemBreadcrumb($text, $link, $classCss, $append, $prepend);
         array_unshift($this->items, $item);
+
         return $this;
     }
 
@@ -118,11 +142,12 @@ class Breadcrumb implements \Iterator, \ArrayAccess, \Countable
 
     /**
      * @param string $id
-     * @return Breadcrumb
+     * @return $this
      */
     public function setId($id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -136,11 +161,12 @@ class Breadcrumb implements \Iterator, \ArrayAccess, \Countable
 
     /**
      * @param string $separator
-     * @return Breadcrumb
+     * @return $this
      */
     public function setSeparator($separator)
     {
         $this->separator = $separator;
+
         return $this;
     }
 
@@ -154,11 +180,12 @@ class Breadcrumb implements \Iterator, \ArrayAccess, \Countable
 
     /**
      * @param string $separatorClass
-     * @return Breadcrumb
+     * @return $this
      */
     public function setSeparatorClass($separatorClass)
     {
         $this->separatorClass = $separatorClass;
+
         return $this;
     }
 
@@ -172,21 +199,23 @@ class Breadcrumb implements \Iterator, \ArrayAccess, \Countable
 
     /**
      * @param string $translationDomain
-     * @return Breadcrumb
+     * @return $this
      */
     public function setTranslationDomain($translationDomain)
     {
         $this->translationDomain = $translationDomain;
+
         return $this;
     }
 
 
     /**
-     * @return Breadcrumb
+     * @return $this
      */
     public function clear()
     {
         $this->items = array();
+
         return $this;
     }
 
