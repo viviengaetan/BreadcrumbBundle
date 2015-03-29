@@ -22,9 +22,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  */
 class BreadcrumbService
 {
-    /** @var \Symfony\Component\DependencyInjection\ContainerInterface */
-    private $container;
-
     /** @var \GGTeam\BreadcrumbBundle\Model\Breadcrumb */
     private $breadcrumb;
 
@@ -36,7 +33,6 @@ class BreadcrumbService
      */
     public function __construct(ContainerInterface $container)
     {
-        $this->container = $container;
         $this->parameters = $container->getParameter("gg_team_breadcrumb");
         $this->breadcrumb = new Breadcrumb();
         $this->breadcrumb
@@ -69,6 +65,16 @@ class BreadcrumbService
         return $this;
     }
 
+    /**
+     * Add an item at the biginning of the breadcrumb.
+     *
+     * @param $text
+     * @param $link
+     * @param null $classCss
+     * @param null $append
+     * @param null $prepend
+     * @return $this
+     */
     public function prependItem($text, $link, $classCss = null, $append = null, $prepend = null)
     {
         $this->breadcrumb->prependItem(
