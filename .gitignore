@@ -33,6 +33,3 @@ phpunit.xml
 # Composer PHAR
 composer.phar
 composer.lock
-
-# Tools
-.idea
