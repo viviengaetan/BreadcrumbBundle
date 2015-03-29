@@ -1,10 +1,25 @@
 <?php
 
+/*
+ * This file is part of the GGTeam package.
+ *
+ * (c) Guillaume Garcia <garciaguillaume69@gmail.com>
+ * (c) Gaëtan Verlhac <viviengaetan69@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace GGTeam\BreadcrumbBundle\Utils;
 
 use GGTeam\BreadcrumbBundle\Model\Breadcrumb;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
+/**
+ * Class BreadcrumbService
+ *
+ * @author Guillaume Garcia <garciaguillaume69@gmail.com>
+ */
 class BreadcrumbService
 {
     /** @var \Symfony\Component\DependencyInjection\ContainerInterface */

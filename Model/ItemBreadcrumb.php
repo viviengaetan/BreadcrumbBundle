@@ -1,39 +1,61 @@
 <?php
 
+/*
+ * This file is part of the GGTeam package.
+ *
+ * (c) Guillaume Garcia <garciaguillaume69@gmail.com>
+ * (c) Gaëtan Verlhac <viviengaetan69@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace GGTeam\BreadcrumbBundle\Model;
 
+/**
+ * Class representing an item in the breadcrumb.
+ *
+ * @author Guillaume Garcia <garciaguillaume69@gmail.com>
+ */
 class ItemBreadcrumb
 {
     /**
-     * Text of Item
+     * Text of item.
      * @var string
      */
     private $text;
 
     /**
-     * Link for this Item
+     * Link for this item.
      * @var string
      */
     private $link;
 
     /**
-     * Class Css of node (<li>)
+     * Css class of the node (<li>).
      * @var string
      */
     private $classCSS;
 
     /**
-     * html after Text
+     * HTML after the text.
      * @var string
      */
     private $append;
 
     /**
-     * html before Text
+     * HTML before the text.
      * @var string
      */
     private $prepend;
 
+    /**
+     * @param $text
+     * @param $link
+     * @param null $classCSS
+     * @param null $append
+     * @param null $prepend
+     */
     public function __construct($text, $link, $classCSS = null, $append = null, $prepend = null)
     {
         $this->text = $text;
@@ -53,7 +75,7 @@ class ItemBreadcrumb
 
     /**
      * @param string $link
-     * @return ItemBreadcrumb
+     * @return $this
      */
     public function setLink($link)
     {
@@ -71,7 +93,7 @@ class ItemBreadcrumb
 
     /**
      * @param string $text
-     * @return ItemBreadcrumb
+     * @return $this
      */
     public function setText($text)
     {
@@ -89,7 +111,7 @@ class ItemBreadcrumb
 
     /**
      * @param string $classCSS
-     * @return ItemBreadcrumb
+     * @return $this
      */
     public function setClassCSS($classCSS)
     {
@@ -107,7 +129,7 @@ class ItemBreadcrumb
 
     /**
      * @param string $append
-     * @return ItemBreadcrumb
+     * @return $this
      */
     public function setAppend($append)
     {
@@ -125,7 +147,7 @@ class ItemBreadcrumb
 
     /**
      * @param string $prepend
-     * @return ItemBreadcrumb
+     * @return $this
      */
     public function setPrepend($prepend)
     {

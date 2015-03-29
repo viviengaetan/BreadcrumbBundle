@@ -1,11 +1,26 @@
 <?php
 
+/*
+ * This file is part of the GGTeam package.
+ *
+ * (c) Guillaume Garcia <garciaguillaume69@gmail.com>
+ * (c) Gaëtan Verlhac <viviengaetan69@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace GGTeam\BreadcrumbBundle\Templating\Helper;
 
 use GGTeam\BreadcrumbBundle\Utils\BreadcrumbService;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\Templating\Helper\Helper;
 
+/**
+ * View helper to construct the breadcrumb.
+ *
+ * @author Guillaume Garcia <garciaguillaume69@gmail.com>
+ */
 class BreadcrumbHelper extends Helper
 {
     protected $templating;
