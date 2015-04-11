@@ -32,10 +32,14 @@ class GGTeamBreadcrumbExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $container->setParameter("gg_team_breadcrumb", $config);
+        $container->setParameter($this->getAlias(), $config);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yml');
+
+        $container->setParameter('gg_team_breadcrumb.config.breadcrumb.class', $config['models']['breadcrumb']);
+        $container->setParameter('gg_team_breadcrumb.config.breadcrumb_item.class', $config['models']['breadcrumb_item']);
+        $container->setParameter('gg_team_breadcrumb.config.template', $config['template']);
     }
 
     /**
@@ -43,7 +47,7 @@ class GGTeamBreadcrumbExtension extends Extension
      */
     public function getNamespace()
     {
-        return 'http://ggteam.com/schema/dic/breadcrumb';
+        return 'http://ggteam.fr/schema/dic/breadcrumb';
     }
 
     /**

@@ -1,18 +1,22 @@
 {% if breadcrumb.getItems()|length > 0 %}
     {% spaceless %}
-        <ul {% if breadcrumb.getId() is not null %}id="{{ breadcrumb.getId() }}"{% endif %} {% if breadcrumb.getClassCSS() is not null %}class="{{ breadcrumb.getClassCSS() }}"{% endif %}>
+        <ul {% if breadcrumb.getCssId() is not null %}id="{{ breadcrumb.getCssId() }}"{% endif %} {% if breadcrumb.getCssClass() is not null %}class="{{ breadcrumb.getCssClass() }}"{% endif %}>
             {% for item in breadcrumb.getItems() %}
-                <li {% if item.getClassCSS() is not null %}class="{{ item.getClassCSS() }}"{% endif %}>
+                <li{% if item.getCssClass() is not null %} class="{{ item.getCssClass() }}"{% endif %}>
                     {% if loop.first == false and breadcrumb.getSeparator() is not null %}
-                        <span {% if breadcrumb.getSeparatorClass() is not null %}class="{{ breadcrumb.getSeparatorClass() }}{% endif %}">{{ breadcrumb.getSeparator()|raw }}</span>
+                        <span{% if breadcrumb.getSeparatorClass() is not null %} class="{{ breadcrumb.getSeparatorClass() }}{% endif %}">{{ breadcrumb.getSeparator()|raw }}</span>
                     {% endif %}
-                    {% if item.getAppend() is not null %}{{ item.getAppend()|raw }}{% endif %}
+                    {% if item.getAppendText() is not null %}
+                        {{ item.getAppendText()|raw }}
+                    {% endif %}
                     {% if item.getLink() is not null %}
                         <a href="{{ item.getLink() }}">{{ item.getText()|raw }}</a>
                     {% else %}
                         {{ item.getText()|raw }}
                     {% endif %}
-                    {% if item.getPrepend() is not null %}{{ item.getPrepend()|raw }}{% endif %}
+                    {% if item.getPrependText() is not null %}
+                        {{ item.getPrependText()|raw }}
+                    {% endif %}
                 </li>
             {% endfor %}
         </ul>

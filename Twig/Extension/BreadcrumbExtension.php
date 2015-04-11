@@ -12,7 +12,7 @@
 
 namespace GGTeam\BreadcrumbBundle\Twig\Extension;
 
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use GGTeam\BreadcrumbBundle\Model\BreadcrumbInterface;
 
 /**
  * Extension for Twig.
@@ -23,49 +23,49 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  */
 class BreadcrumbExtension extends \Twig_Extension
 {
-    /** @var \Symfony\Component\DependencyInjection\ContainerInterface $container */
-    protected $container;
-    /** @var  \GGTeam\BreadcrumbBundle\Model\Breadcrumb $breadcrumb */
+    /** @var  \GGTeam\BreadcrumbBundle\Model\BreadcrumbInterface $breadcrumb */
     protected $breadcrumb;
 
+    /** @var  string $template */
+    protected $template;
+
     /**
-     * @param ContainerInterface $container
+     * @param \GGTeam\BreadcrumbBundle\Model\BreadcrumbInterface $breadcrumb
+     * @param string $template
      */
-    public function __construct(ContainerInterface $container)
+    public function __construct(BreadcrumbInterface $breadcrumb, $template)
     {
-        $this->container = $container;
-        $this->breadcrumb = $container->get('gg_team_breadcrumb')->getBreadcrumb();
+        $this->breadcrumb = $breadcrumb;
+        $this->template = $template;
     }
 
     /**
-     * Returns a list of functions to add to the existing list.
-     *
-     * @return array An array of functions
+     * {@inheritdoc}
      */
     public function getFunctions()
     {
         return array(
-            'gg_team_render_breadcrumb' => new \Twig_Function_Method(
-                $this,
-                "renderBreadcrumb",
-                array("is_safe" => array("html"))
+            new \Twig_SimpleFunction(
+                'gg_team_render_breadcrumb',
+                array($this, 'renderBreadcrumb'),
+                array("is_safe" => array("html"), "needs_environment" => true)
             ),
-            'gg_team_breadcrumb' => new \Twig_Function_Method($this, "getBreadcrumb", array("is_safe" => array("html")))
+            new \Twig_SimpleFunction('gg_team_breadcrumb', array($this, "getBreadcrumb"))
         );
     }
 
     /**
      * @return string
      */
-    public function renderBreadcrumb()
+    public function renderBreadcrumb(\Twig_Environment $twig)
     {
-        return $this->container->get('gg_team_breadcrumb.helper')->breadcrumb();
+        return $twig->render($this->template, array('breadcrumb' => $this->breadcrumb));
     }
 
     /**
      * Get the instance of the breadcrumb.
      *
-     * @return \GGTeam\BreadcrumbBundle\Model\Breadcrumb
+     * @return \GGTeam\BreadcrumbBundle\Model\BreadcrumbInterface
      */
     public function getBreadcrumb()
     {

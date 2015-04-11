@@ -16,8 +16,9 @@ namespace GGTeam\BreadcrumbBundle\Model;
  * Class representing an item in the breadcrumb.
  *
  * @author Guillaume Garcia <garciaguillaume69@gmail.com>
+ * @author Gaëtan Verlhac <viviengaetan69@gmail.com>
  */
-class ItemBreadcrumb
+class BreadcrumbItem implements BreadcrumbItemInterface
 {
     /**
      * Text of item.
@@ -32,41 +33,25 @@ class ItemBreadcrumb
     private $link;
 
     /**
-     * Css class of the node (<li>).
+     * Css class of the node.
      * @var string
      */
-    private $classCSS;
+    private $cssClass;
 
     /**
      * HTML after the text.
      * @var string
      */
-    private $append;
+    private $appendText;
 
     /**
      * HTML before the text.
      * @var string
      */
-    private $prepend;
+    private $prependText;
 
     /**
-     * @param $text
-     * @param $link
-     * @param null $classCSS
-     * @param null $append
-     * @param null $prepend
-     */
-    public function __construct($text, $link, $classCSS = null, $append = null, $prepend = null)
-    {
-        $this->text = $text;
-        $this->link = $link;
-        $this->classCSS = $classCSS;
-        $this->append = $append;
-        $this->prepend = $prepend;
-    }
-
-    /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getLink()
     {
@@ -74,8 +59,7 @@ class ItemBreadcrumb
     }
 
     /**
-     * @param string $link
-     * @return $this
+     * {@inheritdoc}
      */
     public function setLink($link)
     {
@@ -84,7 +68,7 @@ class ItemBreadcrumb
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getText()
     {
@@ -92,8 +76,7 @@ class ItemBreadcrumb
     }
 
     /**
-     * @param string $text
-     * @return $this
+     * {@inheritdoc}
      */
     public function setText($text)
     {
@@ -102,56 +85,53 @@ class ItemBreadcrumb
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
-    public function getClassCSS()
+    public function getCssClass()
     {
-        return $this->classCSS;
+        return $this->cssClass;
     }
 
     /**
-     * @param string $classCSS
-     * @return $this
+     * {@inheritdoc}
      */
-    public function setClassCSS($classCSS)
+    public function setCssClass($cssClass)
     {
-        $this->classCSS = $classCSS;
+        $this->cssClass = $cssClass;
         return $this;
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
-    public function getAppend()
+    public function getAppendText()
     {
-        return $this->append;
+        return $this->appendText;
     }
 
     /**
-     * @param string $append
-     * @return $this
+     * {@inheritdoc}
      */
-    public function setAppend($append)
+    public function setAppendText($append)
     {
-        $this->append = $append;
+        $this->appendText = $append;
         return $this;
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
-    public function getPrepend()
+    public function getPrependText()
     {
-        return $this->prepend;
+        return $this->prependText;
     }
 
     /**
-     * @param string $prepend
-     * @return $this
+     * {@inheritdoc}
      */
-    public function setPrepend($prepend)
+    public function setPrependText($text)
     {
-        $this->prepend = $prepend;
+        $this->prependText = $text;
         return $this;
     }
 

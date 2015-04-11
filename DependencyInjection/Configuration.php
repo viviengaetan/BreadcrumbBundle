@@ -32,15 +32,89 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->scalarNode("separator")->defaultValue("/")->end()
-                ->scalarNode("separator_class")->defaultValue("")->end()
-                ->scalarNode("list_id")->defaultValue("ggteam-breadcrumb")->end()
-                ->scalarNode("list_class")->defaultValue("breadcrumb")->end()
-                ->scalarNode("item_class")->defaultValue("")->end()
-                ->scalarNode("template")->defaultValue("GGTeamBreadcrumbBundle::breadcrumb.html.twig")->end()
-                ->scalarNode("translation_domain")->defaultNull()->end()
+                ->append($this->addModelsNode())
+                ->append($this->addListNode())
+                ->append($this->addItemNode())
+                ->scalarNode('template')
+                    ->defaultValue('GGTeamBreadcrumbBundle::breadcrumb.html.twig')
+                ->end()
             ->end();
 
         return $treeBuilder;
+    }
+
+    /**
+     * @return \Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition|\Symfony\Component\Config\Definition\Builder\NodeDefinition
+     */
+    public function addModelsNode()
+    {
+        $builder = new TreeBuilder();
+        $node = $builder->root('models');
+
+        $node
+            ->children()
+                ->scalarNode('breadcrumb')
+                    ->defaultValue('GGTeam\BreadcrumbBundle\Model\Breadcrumb')
+                    ->cannotBeEmpty()
+                ->end()
+                ->scalarNode('breadcrumb_item')
+                    ->defaultValue('GGTeam\BreadcrumbBundle\Model\BreadcrumbItem')
+                    ->cannotBeEmpty()
+                ->end()
+            ->end()
+            ->end()
+        ;
+
+        return $node;
+    }
+
+    /**
+     * @return \Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition|\Symfony\Component\Config\Definition\Builder\NodeDefinition
+     */
+    public function addListNode()
+    {
+        $builder = new TreeBuilder();
+        $node = $builder->root('list');
+
+        $node
+            ->children()
+                ->scalarNode('css_id')
+                    ->defaultValue('ggteam-breadcrumb')
+                ->end()
+                ->scalarNode('css_class')
+                    ->defaultValue('breadcrumb')
+                ->end()
+                ->scalarNode('separator')
+                    ->defaultValue('/')
+                ->end()
+                ->scalarNode('separator_class')
+                    ->defaultValue('')
+                ->end()
+                ->scalarNode('translation_domain')
+                    ->defaultNull()
+                ->end()
+            ->end()
+        ;
+
+        return $node;
+    }
+
+    /**
+     * @return \Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition|\Symfony\Component\Config\Definition\Builder\NodeDefinition
+     */
+    public function addItemNode()
+    {
+        $builder = new TreeBuilder();
+        $node = $builder->root('item');
+
+        $node
+            ->children()
+                ->scalarNode('css_class')
+                    ->defaultValue('breadcrumb')
+                ->end()
+            ->end()
+        ;
+
+        return $node;
     }
 }

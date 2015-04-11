@@ -16,27 +16,21 @@ namespace GGTeam\BreadcrumbBundle\Model;
  * Model class for a breadcrumb.
  *
  * @author Guillaume Garcia <garciaguillaume69@gmail.com>
+ * @author Gaëtan Verlhac <viviengaetan69@gmail.com>
  */
-class Breadcrumb implements \Iterator, \ArrayAccess, \Countable
+class Breadcrumb extends AbstractBreadcrumb
 {
-
-    /**
-     * List of ItemBreadcrumb.
-     * @var array[ItemBreadcrumb]
-     */
-    private $items = array();
-
     /**
      * Id used in CSS.
      * @var string
      */
-    private $id;
+    private $cssId;
 
     /**
      * CSS class of <ul> element.
      * @var string
      */
-    private $classCSS;
+    private $cssClass;
 
     /**
      * The separator between each item.
@@ -56,103 +50,44 @@ class Breadcrumb implements \Iterator, \ArrayAccess, \Countable
      */
     private $translationDomain;
 
-
-
     /**
-     * @return string
+     * {@inheritdoc}
      */
-    public function getClassCSS()
+    public function getCssClass()
     {
-        return $this->classCSS;
+        return $this->cssClass;
     }
 
     /**
-     * @param string $classCSS
-     * @return $this
+     * {@inheritdoc}
      */
-    public function setClassCSS($classCSS)
+    public function setCssClass($cssClass)
     {
-        $this->classCSS = $classCSS;
+        $this->cssClass = $cssClass;
 
         return $this;
     }
 
     /**
-     * @return array
+     * {@inheritdoc}
      */
-    public function getItems()
+    public function getCssId()
     {
-        return $this->items;
+        return $this->cssId;
     }
 
     /**
-     * @param array $items
-     * @return $this
+     * {@inheritdoc}
      */
-    public function setItems($items)
+    public function setCssId($cssId)
     {
-        $this->items = $items;
+        $this->cssId = $cssId;
 
         return $this;
     }
 
     /**
-     * Add an item to the Breadcrumb.
-     *
-     * @param string $text
-     * @param string $link
-     * @param string $classCss
-     * @param null $append
-     * @param null $prepend
-     * @return $this
-     */
-    public function addItem($text, $link, $classCss = null, $append = null, $prepend = null)
-    {
-        $item = new ItemBreadcrumb($text, $link, $classCss, $append, $prepend);
-        $this->items[] = $item;
-
-        return $this;
-    }
-
-    /**
-     * Add an item at the beginning of the breadcrumb.
-     *
-     * @param string $text
-     * @param string $link
-     * @param string $classCss
-     * @param null $append
-     * @param null $prepend
-     * @return $this
-     */
-    public function prependItem($text, $link, $classCss = null, $append = null, $prepend = null)
-    {
-        $item = new ItemBreadcrumb($text, $link, $classCss, $append, $prepend);
-        array_unshift($this->items, $item);
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param string $id
-     * @return $this
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
-    }
-
-    /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getSeparator()
     {
@@ -160,8 +95,7 @@ class Breadcrumb implements \Iterator, \ArrayAccess, \Countable
     }
 
     /**
-     * @param string $separator
-     * @return $this
+     * {@inheritdoc}
      */
     public function setSeparator($separator)
     {
@@ -171,7 +105,7 @@ class Breadcrumb implements \Iterator, \ArrayAccess, \Countable
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getSeparatorClass()
     {
@@ -179,8 +113,7 @@ class Breadcrumb implements \Iterator, \ArrayAccess, \Countable
     }
 
     /**
-     * @param string $separatorClass
-     * @return $this
+     * {@inheritdoc}
      */
     public function setSeparatorClass($separatorClass)
     {
@@ -190,7 +123,7 @@ class Breadcrumb implements \Iterator, \ArrayAccess, \Countable
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getTranslationDomain()
     {
@@ -198,104 +131,12 @@ class Breadcrumb implements \Iterator, \ArrayAccess, \Countable
     }
 
     /**
-     * @param string $translationDomain
-     * @return $this
+     * {@inheritdoc}
      */
     public function setTranslationDomain($translationDomain)
     {
         $this->translationDomain = $translationDomain;
 
         return $this;
-    }
-
-
-    /**
-     * @return $this
-     */
-    public function clear()
-    {
-        $this->items = array();
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function current()
-    {
-        return current($this->items);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function next()
-    {
-        return next($this->items);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function key()
-    {
-        return key($this->items);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function valid()
-    {
-        return key($this->items) !== null;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function rewind()
-    {
-        return rewind($this->items);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function offsetExists($offset)
-    {
-        return isset($this->items);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function offsetGet($offset)
-    {
-        return (isset($this->items[$offset])) ? $this->items[$offset] : null;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function offsetSet($offset, $value)
-    {
-        $this->items[$offset] = $value;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function offsetUnset($offset)
-    {
-        unset($this->items[$offset]);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function count()
-    {
-        return count($this->items);
     }
 }

@@ -1,8 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-
-<xsd:schema xmlns="http://symfony.com/schema/routing"
+<xsd:schema xmlns="http://ggteam.fr/schema/dic/breadcrumb"
             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-            targetNamespace="http://symfony.com/schema/routing"
+            targetNamespace="http://ggteam.fr/schema/dic/breadcrumb"
             elementFormDefault="qualified">
 
+    <xsd:element name="config" type="config"/>
+
+    <xsd:complexType name="config">
+        <xsd:attribute name="models" type="models"/>
+        <xsd:attribute name="list" type="list"/>
+        <xsd:attribute name="item" type="item"/>
+        <xsd:attribute name="template" type="xsd:string"/>
+    </xsd:complexType>
+
+    <xsd:complexType name="models">
+        <xsd:attribute name="breadcrumb" type="xsd:string" />
+        <xsd:attribute name="breadcrumb_item" type="xsd:string" />
+    </xsd:complexType>
+
+    <xsd:complexType name="list">
+        <xsd:attribute name="css_id" type="xsd:string" />
+        <xsd:attribute name="css_class" type="xsd:string" />
+        <xsd:attribute name="separator" type="xsd:string" />
+        <xsd:attribute name="separator_class" type="xsd:string" />
+        <xsd:attribute name="translation_domain" type="xsd:string" />
+    </xsd:complexType>
+
+    <xsd:complexType name="item">
+        <xsd:attribute name="css_class" type="xsd:string" />
+    </xsd:complexType>
 </xsd:schema>

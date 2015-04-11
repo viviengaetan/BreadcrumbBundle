@@ -1,14 +1,27 @@
 services:
-    gg_team_breadcrumb:
-        class: 'GGTeam\BreadcrumbBundle\Utils\BreadcrumbService'
-        arguments: [@service_container]
+    gg_team_breadcrumb.breadcrumb.class:
+        class: '%gg_team_breadcrumb.config.breadcrumb.class%'
+
+    gg_team_breadcrumb.breadcrumb_item.class:
+        class: '%gg_team_breadcrumb.config.breadcrumb_item.class%'
+        scope: prototype
+
+    gg_team_breadcrumb.breadcrumb.factory.class:
+        class: 'GGTeam\BreadcrumbBundle\Service\Factory\BreadcrumbFactory'
+
+    gg_team_breadcrumb.breadcrumb.factory:
+        class: 'GGTeam\BreadcrumbBundle\Model\BreadcrumbInterface'
+        factory_class: 'GGTeam\BreadcrumbBundle\Service\Factory\BreadcrumbFactory'
+        factory_method: createBreadcrumb
+        arguments:
+            - "@gg_team_breadcrumb.breadcrumb.class"
+            - "%gg_team_breadcrumb%"
+
+    # Twig extension
     gg_team_breadcrumb.twig:
         class: 'GGTeam\BreadcrumbBundle\Twig\Extension\BreadcrumbExtension'
-        arguments: [@service_container]
+        arguments:
+            - "@gg_team_breadcrumb.breadcrumb.factory"
+            - "%gg_team_breadcrumb.config.template%"
         tags:
             - { name: "twig.extension" }
-    gg_team_breadcrumb.helper:
-        class: 'GGTeam\BreadcrumbBundle\Templating\Helper\BreadcrumbHelper'
-        arguments: [@templating, @gg_team_breadcrumb]
-        tags:
-            - { name: "templating.helper", alias: "breadcrumb" }
