@@ -12,6 +12,7 @@
 
 namespace GGTeam\BreadcrumbBundle\DependencyInjection;
 
+use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -32,89 +33,89 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->append($this->addModelsNode())
-                ->append($this->addListNode())
-                ->append($this->addItemNode())
                 ->scalarNode('template')
                     ->defaultValue('GGTeamBreadcrumbBundle::breadcrumb.html.twig')
                 ->end()
             ->end();
 
+        $this->addModelsNode($rootNode);
+        $this->addListNode($rootNode);
+        $this->addItemNode($rootNode);
+
         return $treeBuilder;
     }
 
     /**
-     * @return \Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition|\Symfony\Component\Config\Definition\Builder\NodeDefinition
+     * @param ArrayNodeDefinition $node
      */
-    public function addModelsNode()
+    public function addModelsNode(ArrayNodeDefinition $node)
     {
-        $builder = new TreeBuilder();
-        $node = $builder->root('models');
-
         $node
             ->children()
-                ->scalarNode('breadcrumb')
-                    ->defaultValue('GGTeam\BreadcrumbBundle\Model\Breadcrumb')
-                    ->cannotBeEmpty()
+                ->arrayNode('models')
+                    ->addDefaultsIfNotSet()
+                    ->canBeUnset()
+                    ->children()
+                        ->scalarNode('breadcrumb')
+                            ->defaultValue('GGTeam\BreadcrumbBundle\Model\Breadcrumb')
+                            ->cannotBeEmpty()
+                        ->end()
+                        ->scalarNode('breadcrumb_item')
+                            ->defaultValue('GGTeam\BreadcrumbBundle\Model\BreadcrumbItem')
+                            ->cannotBeEmpty()
+                        ->end()
+                    ->end()
                 ->end()
-                ->scalarNode('breadcrumb_item')
-                    ->defaultValue('GGTeam\BreadcrumbBundle\Model\BreadcrumbItem')
-                    ->cannotBeEmpty()
-                ->end()
-            ->end()
-            ->end()
-        ;
+            ->end();
+    }
 
-        return $node;
+    /**
+     * @param ArrayNodeDefinition $node
+     */
+    public function addListNode(ArrayNodeDefinition $node)
+    {
+        $node
+            ->children()
+                ->arrayNode('list')
+                    ->addDefaultsIfNotSet()
+                    ->canBeUnset()
+                    ->children()
+                        ->scalarNode('css_id')
+                            ->defaultValue('ggteam-breadcrumb')
+                        ->end()
+                        ->scalarNode('css_class')
+                            ->defaultValue('breadcrumb')
+                        ->end()
+                        ->scalarNode('separator')
+                            ->defaultValue('/')
+                        ->end()
+                        ->scalarNode('separator_class')
+                            ->defaultValue('')
+                        ->end()
+                        ->scalarNode('translation_domain')
+                            ->defaultNull()
+                        ->end()
+                    ->end()
+                ->end()
+            ->end();
     }
 
     /**
      * @return \Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition|\Symfony\Component\Config\Definition\Builder\NodeDefinition
      */
-    public function addListNode()
+    public function addItemNode(ArrayNodeDefinition $node)
     {
-        $builder = new TreeBuilder();
-        $node = $builder->root('list');
-
         $node
             ->children()
-                ->scalarNode('css_id')
-                    ->defaultValue('ggteam-breadcrumb')
+                ->arrayNode('item')
+                    ->addDefaultsIfNotSet()
+                    ->canBeUnset()
+                    ->children()
+                        ->scalarNode('css_class')
+                            ->defaultValue('breadcrumb')
+                        ->end()
+                    ->end()
                 ->end()
-                ->scalarNode('css_class')
-                    ->defaultValue('breadcrumb')
-                ->end()
-                ->scalarNode('separator')
-                    ->defaultValue('/')
-                ->end()
-                ->scalarNode('separator_class')
-                    ->defaultValue('')
-                ->end()
-                ->scalarNode('translation_domain')
-                    ->defaultNull()
-                ->end()
-            ->end()
-        ;
-
-        return $node;
-    }
-
-    /**
-     * @return \Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition|\Symfony\Component\Config\Definition\Builder\NodeDefinition
-     */
-    public function addItemNode()
-    {
-        $builder = new TreeBuilder();
-        $node = $builder->root('item');
-
-        $node
-            ->children()
-                ->scalarNode('css_class')
-                    ->defaultValue('breadcrumb')
-                ->end()
-            ->end()
-        ;
-
-        return $node;
+            ->end();
     }
 }

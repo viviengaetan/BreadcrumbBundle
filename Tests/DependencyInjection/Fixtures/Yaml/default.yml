@@ -1,8 +1,0 @@
-gg_team_breadcrumb:
-    separator: "/"
-    separator_class: ""
-    list_id: "ggteam-breadcrumb"
-    list_class: "breadcrumb"
-    item_class: ""
-    template: "GGTeamBreadcrumbBundle::breadcrumb.html.twig"
-    translation_domain: null

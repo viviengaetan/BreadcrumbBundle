@@ -1,0 +1,10 @@
+<!-- src/Acme/DemoBundle/Tests/DependencyInjection/Fixtures/Xml/disabled.xml -->
+<container
+        xmlns="http://symfony.com/schema/dic/services"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:gg-team-breadcrumb="http://ggteam.fr/schema/dic/breadcrumb"
+        xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd
+            http://ggteam.fr/schema/dic/breadcrumb http://ggteam.fr/schema/dic/breadcrumb/breadcrumb.xsd"
+        >
+    <gg-team-breadcrumb:config/>
+</container>

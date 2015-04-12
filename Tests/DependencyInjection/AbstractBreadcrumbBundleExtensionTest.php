@@ -39,6 +39,25 @@ abstract class AbstractBreadcrumbBundleExtensionTest extends \PHPUnit_Framework_
         $this->container->compile();
 
         $this->assertTrue($this->container->getParameterBag()->has('gg_team_breadcrumb'));
+        $this->assertEquals(
+            $this->getDefaultConfiguration(),
+            $this->container->getParameterBag()->get('gg_team_breadcrumb')
+        );
+    }
+
+    public function testEmptyConfiguration()
+    {
+        $this->loadConfiguration($this->container, 'empty');
+        // An extension is only loaded in the container if a configuration is provided for it.
+        // Then, we need to explicitely load it.
+        $this->container->loadFromExtension($this->extension->getAlias());
+        $this->container->compile();
+
+        $this->assertTrue($this->container->getParameterBag()->has('gg_team_breadcrumb'));
+        $this->assertEquals(
+            $this->getDefaultConfiguration(),
+            $this->container->getParameterBag()->get('gg_team_breadcrumb')
+        );
     }
 
     /**
@@ -52,5 +71,29 @@ abstract class AbstractBreadcrumbBundleExtensionTest extends \PHPUnit_Framework_
             );
         }
         return $this->mockTemplatingEngine;
+    }
+
+    /**
+     * @return array
+     */
+    private function getDefaultConfiguration()
+    {
+        return array(
+            'template' => 'GGTeamBreadcrumbBundle::breadcrumb.html.twig',
+            'models' => array(
+                "breadcrumb" => 'GGTeam\BreadcrumbBundle\Model\Breadcrumb',
+                "breadcrumb_item" => 'GGTeam\BreadcrumbBundle\Model\BreadcrumbItem'
+            ),
+            'list' => array(
+                'css_id' => 'ggteam-breadcrumb',
+                'css_class' => 'breadcrumb',
+                'separator' => '/',
+                'separator_class' => '',
+                'translation_domain' => null
+            ),
+            'item' => array(
+                'css_class' => 'breadcrumb'
+            )
+        );
     }
 }
