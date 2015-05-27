@@ -9,4 +9,9 @@ before_script:
   - composer self-update
   - composer update --prefer-source
 
-script: phpunit --coverage-clover=coverage.clover
+script:
+  - mkdir -p build/logs
+  - php vendor/bin/phpunit
+
+after_script:
+  - php vendor/bin/coveralls -v
